@@ -30,7 +30,7 @@ GlizzarineProcessor::GlizzarineProcessor()
 
     for (int t = 0; t < numMacroTemplates; ++t)
     {
-        const auto& tpl = ::getMacroTemplate (t);
+       const auto& tpl = ::getMacroTemplate (t);
         for (int m = 0; m < 8; ++m)
             for (const auto& target : tpl.macros[m].targets)
                 if (target.id != nullptr)
