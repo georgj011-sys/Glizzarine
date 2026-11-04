@@ -30,7 +30,7 @@ GlizzarineProcessor::GlizzarineProcessor()
 
     for (int t = 0; t < numMacroTemplates; ++t)
     {
-       const auto& tpl = ::getMacroTemplate (t);
+        const auto& tpl = ::getMacroTemplate (t);
         for (int m = 0; m < 8; ++m)
             for (const auto& target : tpl.macros[m].targets)
                 if (target.id != nullptr)
@@ -89,7 +89,15 @@ void GlizzarineProcessor::computeMacroOffsets()
         const float mv = macroParams[(size_t) m]->getValue();
         if (mv <= 0.0001f)
             continue;
+
         for (const auto& target : macroTargets[(size_t) t][(size_t) m])
             macroOffsets[(size_t) target.first] += mv * target.second;
     }
+}
+
+//==============================================================================
+// JUCE VST3 plugin entry point
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+{
+    return new GlizzarineProcessor();
 }
